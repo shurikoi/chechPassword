@@ -189,7 +189,7 @@ input:focus {
     margin-right: 10px;
     margin-bottom: 10px;
     display: flex;
-    align-items: center; 
+    align-items: center;
     padding: 0px 20px;
     background-color: #ffffff;
     height: 250px;
@@ -234,4 +234,23 @@ input:focus {
     border: 1px solid black;
     background-color: rgb(255, 255, 255);
     box-shadow: -4px 4px;
+}
+
+#footer {
+    /* background-color: black; */
+    border-top: 1px solid black;
+    font-size: 18px;
+    z-index: 1000;
+    height: 65px;
+    width: 100%;
+}
+
+.footer-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    text-align: center;
+    color: #000000;
 }
