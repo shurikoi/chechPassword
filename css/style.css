@@ -85,7 +85,7 @@ body {
     margin-right: auto;
     /* width: 50%; */
     /* padding-top: 50px; */
-    padding: 130px 200px;
+    padding: 160px 200px;
 }
 
 #slogan {
@@ -105,10 +105,11 @@ body {
 
 .content {
     /* padding: 30px 30px 30px 60px; */
-    padding-top: 30px;
+    padding-top: 40px;
     padding-bottom: 20px;
     margin-top: 30px;
     margin-left: 10px;
+    display: flex;
 }
 
 .card {
@@ -118,14 +119,32 @@ body {
     border-radius: 25px;
     box-shadow: 0px 0px 30px rgb(227, 227, 227);
     /* box-shadow: 0px 0px 30px rgb(240, 2, 2); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.image {
+    display: flex;
+    justify-content: center;
 }
 
 .card-image {
-    width: 200px;
-    height: 100%;
+    width: 50%;
     border-radius: 25px;
     /* background-color: #56B4D3; */
     background-size: cover;
+}
+
+.text-card {
+    /* margin-top: 50px; */
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    text-align: center;
+    max-width: 400px;
 }
 
 /* .wifi {
@@ -193,7 +212,7 @@ input:focus {
 }
 
 .secure {
-    margin-top: 100px;
+    margin-top: 120px;
 }
 
 .text-secure {
@@ -212,7 +231,6 @@ input:focus {
 }
 
 .container-cards {
-    display: flex;
     flex-wrap: wrap;
     margin-top: 25px;
     font-family: 'Roboto', sans-serif;
@@ -224,15 +242,15 @@ input:focus {
 }
 
 .block {
-    align-items: center;
     display: flex;
+    align-items: center;
+    text-align: center;
     align-items: center;
     padding: 0px 20px;
     background-color: #ffffff;
     height: 250px;
     max-width: 250px;
     border-radius: 25px;
-    float: left;
     transition: 0.1s ease;
 }
 
@@ -263,6 +281,7 @@ input:focus {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 3px;
 }
 
 .source {

@@ -1,7 +1,8 @@
 let lang = {
     "pl": {
         "slogan": "Korzystanie z Internetu ma swoje nieocenione zalety, ale pamiętaj,</br> że nie jest wolne od zagrożeń.",
-        "textTest": "Sprawdź o ile bezpieczne hasło",
+        // "textTest": "Sprawdź o ile bezpieczne hasło",
+        "textTest": "Sprawdź czy spełnia hasło minimalne warunki",
         "inputPassword": "Wprowadź tutaj",
         "check0": "Więcej niż 5",
         "check1": "Nie więcej niż 15",
@@ -9,7 +10,7 @@ let lang = {
         "check3": "Zawiera znaki specjalne",
         "check4": "Nie zawiera spacji",
         "textSecure": "Bezpieczeństwo haseł zaczyna się od ich siły.",
-        "levelSecure": "Silne hasło ...",
+        "levelSecure": "Silne hasło",
         "advice0": "Jest to co najmniej 12 znaków, ale lepsze jest co najmniej 14 znaków.",
         "advice1": "Kombinacja wielkich liter, małych liter, cyfr i symboli.",
         "advice2": "To nie wyraz, który można znaleźć w słowniku, ani nazwa osoby, znaku, produktu lub organizacji.",
@@ -20,7 +21,7 @@ let lang = {
     },
     "ua": {
         "slogan": "Користування Інтернетом має безцінні переваги, але пам’ятайте,</br> що воно не позбавлене ризиків.",
-        "textTest": "Перевір безпеку паролю",
+        "textTest": "Перевір чи відповідає пароль мінімальним вимогам",
         "inputPassword": "Введення паролю",
         "check0": "Більше ніж 5",
         "check1": "Не більше ніж 15",
@@ -28,7 +29,7 @@ let lang = {
         "check3": "Включає спеціяльні знаки",
         "check4": "Не має пробілів",
         "textSecure": "Безпека паролів залежить від їх захисту та сили",
-        "levelSecure": "Сильний пароль це ...",
+        "levelSecure": "Сильний пароль",
         "advice0": "Має принаймні 12 символів, але краще коли не менше 14.",
         "advice1": "Комбінація великих літер та малих, цифр і символів.",
         "advice2": "Це не вираз, який можна знайти в словнику, не назва особа, продукту чи організації.",
@@ -67,23 +68,27 @@ function render() {
                 <div class="swiper-wrapper content">
                     <div class="swiper-slide card">
                         <div class="image">
-                            <img src="" alt="">
+                            <img class="card-image" src="images/3.png" alt="two-step-auth">
                         </div>
+                        <div class="text-card">Korzystaj z weryfikacji dwoetapowej</div>
                     </div>
                     <div class="swiper-slide card">
                         <div class="image">
-                            <img src="" alt="">
+                            <img class="card-image" src="images/4.png" alt="foreign-pc">
                         </div>
+                        <div class="text-card">Wylogowuj się ze swoich kont, jeśli korzystałeś z nich na obcym komputerze</div>
                     </div>
                     <div class="swiper-slide card">
                         <div class="image">
-                            <img src="" alt="">
+                            <img class="card-image" src="images/2.png" alt="two-step-auth">
                         </div>
+                        <div class="text-card">Korzystaj tylko z sieci WiFi posiadające hasło</div>
                     </div>
                     <div class="swiper-slide card">
                         <div class="image">
-                            <img src="" alt="">
+                            <img class="card-image" src="images/5.png" alt="safe-wifi">
                         </div>
+                        <div class="text-card">Odwiedzaj wyłącznie bezpieczne strony, czyli takie, które posiadają certyfikat bezpieczeństwa (świadczy o nim zamknięta kłódka, którą znajdziesz na lewo od adresu strony www)</div>
                     </div>
                 </div>
                 
