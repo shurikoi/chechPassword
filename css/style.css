@@ -19,6 +19,9 @@ body {
     animation: gradient 8s infinite linear;
     background-size: 200%;
     position: fixed;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
 
 @keyframes gradient {
@@ -49,7 +52,7 @@ body {
     font-weight: 500;
     color: #72D933;
     font-size: 18px;
-    padding: 35px 200px;
+    /* padding: 35px 200px; */
     mix-blend-mode: color-dodge;
 }
 
@@ -66,6 +69,7 @@ body {
     font-weight: 500;
     font-size: 35px;
     /* padding-bottom: 70px; */
+    text-align: center;
 }
 
 .container {
@@ -105,6 +109,11 @@ body {
     max-width: 100%;
     height: auto;
 } */
+
+.swiper-section{
+    position: relative;
+    padding: 0px 50px;
+}
 
 .container-test {
     margin-top: 100px;
@@ -167,6 +176,7 @@ input:focus {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     font-size: 35px;
+    text-align: center;
 }
 
 .level-secure {
@@ -174,20 +184,23 @@ input:focus {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     font-size: 20px;
+    text-align: center;
 }
 
 .container-cards {
+    display: flex;
+    flex-wrap: wrap;
     margin-top: 25px;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     font-size: 20px;
     display: flex;
+    gap: 20px;
     justify-content: center;
 }
 
 .block {
-    margin-right: 10px;
-    margin-bottom: 10px;
+    align-items: center;
     display: flex;
     align-items: center;
     padding: 0px 20px;
@@ -216,6 +229,8 @@ input:focus {
 .link {
     margin-top: 20px;
     margin-left: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .source {
@@ -252,5 +267,10 @@ input:focus {
     font-family: 'Roboto', sans-serif;
     font-weight: 100;
     text-align: center;
+    color: #000000;
+}
+
+a {
+    text-decoration: none;
     color: #000000;
 }
