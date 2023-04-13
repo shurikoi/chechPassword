@@ -6,15 +6,16 @@ let lang = {
         "card2": "Korzystaj tylko z sieci WiFi posiadające hasło",
         "card3": "Odwiedzaj wyłącznie bezpieczne strony, czyli takie, które posiadają certyfikat bezpieczeństwa (świadczy o nim zamknięta kłódka, którą znajdziesz na lewo od adresu strony www)",
         // "textTest": "Sprawdź jak bezpieczne jest twoje hasło",
-        "textTest": "Sprawdź czy spełnia hasło minimalne warunki",
+        "textTest": "Sprawdź jak bezpieczne jest twoje hasło",
         "inputPassword": "Wprowadź tutaj",
         "check0": "Więcej niż 5",
         "check1": "Nie więcej niż 15",
         "check2": "Zawiera cyfry",
         "check3": "Zawiera znaki specjalne",
         "check4": "Nie zawiera spacji",
-        "textSecure": "Bezpieczeństwo haseł zaczyna się od ich siły.",
-        "levelSecure": "Silne hasło",
+        // "textSecure": "Bezpieczeństwo haseł zaczyna się od ich siły.",
+        "textSecure": "Co to jest bezpieczne hasło?",
+        // "levelSecure": "Silne hasło",
         "advice0": "Ma co najmniej 12 znaków, ale lepiej jest co najmniej 14 znaków.",
         "advice1": "Kombinacja wielkich liter, małych liter, cyfr i symboli.",
         "advice2": "To nie wyraz, który można znaleźć w słowniku, ani nazwa osoby, znaku, produktu, organizacji, sportu lub hobby.",
@@ -29,15 +30,16 @@ let lang = {
         "card1": "Вийдіть зі своїх облікових записів, якщо ви їх використовували на чужому комп’ютері",
         "card2": "Використовуйте лише мережі WiFi, які мають пароль",
         "card3": "Відвідуйте лише безпечні веб-сайти, тобто ті, які мають сертифікат безпеки (про це свідчить закритий замок, який ви знайдете зліва від адреси веб-сайту)",
-        "textTest": "Перевір чи відповідає пароль мінімальним вимогам",
+        "textTest": "Перевір наскільки безпечний твій пароль",
         "inputPassword": "Введення паролю",
         "check0": "Більше ніж 5",
         "check1": "Не більше ніж 15",
         "check2": "Включає цифри",
         "check3": "Включає спеціяльні знаки",
         "check4": "Не має пробілів",
-        "textSecure": "Безпека паролів залежить від їх захисту та сили",
-        "levelSecure": "Сильний пароль",
+        // "textSecure": "Безпека паролів залежить від їх захисту та сили",
+        "textSecure": "Що таке безпечний пароль?",
+        // "levelSecure": "Сильний пароль",
         "advice0": "Має принаймні 12 символів, але краще коли не менше 14.",
         "advice1": "Комбінація великих літер та малих, цифр і символів.",
         "advice2": "Це не вираз, який можна знайти в словнику, не назва особа, продукту чи організації.",
@@ -110,7 +112,7 @@ function render() {
             <div class="text-test">
             ${lang[currentLang].textTest}
             </div>
-            <div class="pass"><input type="text" id="password" placeholder="${lang[currentLang].inputPassword}" onInput="check()" /></div>
+            <div class="pass"><input type="password" id="password" placeholder="${lang[currentLang].inputPassword}" onInput="check()" /></div>
             <div class="check-password"> <div id="progress"> 
                 <div id="bar"></div> 
             </div>
@@ -118,7 +120,7 @@ function render() {
 
         <div class="secure">
             <div class="text-secure">${lang[currentLang].textSecure}</div>
-            <div class="level-secure">${lang[currentLang].levelSecure}</div>
+            <!-- <div class="level-secure">${lang[currentLang].levelSecure}</div> -->
 
 
 
@@ -155,15 +157,6 @@ function render() {
                     ${lang[currentLang].download}
                     </a>
                 </div>
-                <div class="link">
-                    <div class="source">
-                        PowerPoint:
-                    </div>
-                    
-                    <a href="button.svg"  download="button.svg" class="download" >
-                    ${lang[currentLang].download}
-                    </a>
-                </div>
             </div>
         </div>
         </div>
@@ -183,7 +176,7 @@ function render() {
         })
     })
 
-    var swiper = new Swiper(".mySwiper", {
+    let swiper = new Swiper(".mySwiper", {
         slidesPerView: 2,
         spaceBetween: 30,
         slidesPerGroup: 1,
@@ -206,7 +199,7 @@ function render() {
 // check()
     
 function check() {
-    var input = document.getElementById("password").value
+    let input = document.getElementById("password").value
 
     input = input.trim()
     // const Entropizer = require("../entropizer")
@@ -216,29 +209,15 @@ function check() {
     document.getElementById("password").value = input
     var entropizer = new Entropizer()
     var entropy = entropizer.evaluate(input)
+    const elem = document.getElementById("bar")
+    let width = 0;
     console.log(entropy)
 
     function move() {
-        // if (entropy >= 1 && entropy < 30) {
-        //     var elem = document.getElementById("bar")
-        //     var width = 1;
-        //     var id = setInterval(frame, 10)
-        //     function frame() {
-        //         if (width >= 100) {
-        //             clearInterval(id)
-        //             entropy = 0
-        //         } else {
-        //             width++
-        //             elem.style.width = width + "%"
-        //         }
-        //     }
-        // }
 
 
         if (entropy >= 1 && entropy < 30) {
-            var elem = document.getElementById("bar")
-            var width = 1;
-            var id = setInterval(frame, 10)
+            let id = setInterval(frame, 10)
             function frame() {
                 if (width <= 15) {
                     width++
@@ -246,9 +225,8 @@ function check() {
                 } 
             } 
         } else if (entropy >= 30 && entropy < 50) {
-            var elem = document.getElementById("bar")
-            var width = 1;
-            var id = setInterval(frame, 10)
+            let elem = document.getElementById("bar")
+            let id = setInterval(frame, 10)
             function frame() {
                 if (width <= 45) {
                     width++
@@ -256,9 +234,8 @@ function check() {
                 } 
             } 
         } else if (entropy >= 50 && entropy < 70) {
-            var elem = document.getElementById("bar")
-            var width = 1;
-            var id = setInterval(frame, 10)
+            let elem = document.getElementById("bar")
+            let id = setInterval(frame, 10)
             function frame() {
                 if (width <= 75) {
                     width++
@@ -266,9 +243,8 @@ function check() {
                 } 
             } 
         } else if (entropy >= 70 && entropy < 120) {
-            var elem = document.getElementById("bar")
-            var width = 1;
-            var id = setInterval(frame, 10)
+            let elem = document.getElementById("bar")
+            let id = setInterval(frame, 10)
             function frame() {
                 if (width <= 90) {
                     width++
@@ -276,15 +252,16 @@ function check() {
                 } 
             } 
         } else if (entropy >= 120) {
-            var elem = document.getElementById("bar")
-            var width = 1;
-            var id = setInterval(frame, 10)
+            let elem = document.getElementById("bar")
+            let id = setInterval(frame, 10)
             function frame() {
                 if (width <= 100) {
                     width++
                     elem.style.width = width + "%"
                 } 
             } 
+        } else if (entropy == 0) {
+            elem.style.width = 0 + "%"
         }
 
 
@@ -292,60 +269,5 @@ function check() {
 
 
     move()
-
-    // function move() {
-    //     if (entropy >= 1 && entropy <= 30) {
-    //         var elem = document.getElementById("bar")
-    //         var width = 1;
-    //         var id = setInterval(frame, 10)
-    //         function frame() {
-    //             if (width >= 100) {
-    //                 clearInterval(id)
-    //                 entropy = 0
-    //             } else {
-    //                 width++
-    //                 elem.style.width = width + "%"
-    //             }
-    //         }
-    //     }
-    // }
-
-
-
-
-    // if (input.length >= 5) {
-    //     document.getElementById("check0").style.color = "green"
-    // }
-    // else {
-    //     document.getElementById("check0").style.color = "red"
-    // }
-
-    // if (input.length <= 15) {
-    //     document.getElementById("check1").style.color = "green"
-    // }
-    // else {
-    //     document.getElementById("check1").style.color = "red"
-    // }
-
-    // if (input.match(/[0-9]/i)) {
-    //     document.getElementById("check2").style.color = "green"
-    // }
-    // else {
-    //     document.getElementById("check2").style.color = "red"
-    // }
-
-    // if (input.match(/[^A-Za-z0-9-' ']/i)) {
-    //     document.getElementById("check3").style.color = "green"
-    // }
-    // else {
-    //     document.getElementById("check3").style.color = "red"
-    // }
-
-    // if (input.match(' ')) {
-    //     document.getElementById("check4").style.color = "red"
-    // }
-    // else {
-    //     document.getElementById("check4").style.color = "green"
-    // }
 
 }

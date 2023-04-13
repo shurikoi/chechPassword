@@ -203,9 +203,10 @@ input:focus {
 }
 
 #bar {
-    width: 1%;
+    width: 0%;
     height: 15px;
-    background-color: green;
+    background: linear-gradient(149deg, #ffd684, #6800fa);
+    /* background-color: rgb(99, 255, 99); */
 }
 
 .indicators {
@@ -228,7 +229,7 @@ input:focus {
 }
 
 .secure {
-    margin-top: 120px;
+    margin-top: 100px;
 }
 
 .text-secure {
