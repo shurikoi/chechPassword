@@ -111,24 +111,10 @@ function render() {
             ${lang[currentLang].textTest}
             </div>
             <div class="pass"><input type="text" id="password" placeholder="${lang[currentLang].inputPassword}" onInput="check()" /></div>
-            <div class="indicators">
-                <div id="check0">
-                    <i class="far fa-check-circle"></i>${lang[currentLang].check0}
-                </div>
-                <div id="check1">
-                    <i class="far fa-check-circle"></i>${lang[currentLang].check1}
-                </div>
-                <div id="check2">
-                    <i class="far fa-check-circle"></i>${lang[currentLang].check2}
-                </div>
-                <div id="check3">
-                    <i class="far fa-check-circle"></i>${lang[currentLang].check3}
-                </div>
-                <div id="check4">
-                    <i class="far fa-check-circle"></i>${lang[currentLang].check4}
-                </div>
+            <div class="check-password"> <div id="progress"> 
+                <div id="bar"></div> 
             </div>
-        </div>
+        </div></div>
 
         <div class="secure">
             <div class="text-secure">${lang[currentLang].textSecure}</div>
@@ -211,7 +197,7 @@ function render() {
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
         },
-    });
+    })
 
 }
 
@@ -220,52 +206,146 @@ function render() {
 // check()
     
 function check() {
-    var input = document.getElementById("password").value;
+    var input = document.getElementById("password").value
 
-    input = input.trim();
+    input = input.trim()
     // const Entropizer = require("../entropizer")
     // const Entropizer = require('entropizer')
     
 
-    document.getElementById("password").value = input;
+    document.getElementById("password").value = input
     var entropizer = new Entropizer()
     var entropy = entropizer.evaluate(input)
     console.log(entropy)
 
+    function move() {
+        // if (entropy >= 1 && entropy < 30) {
+        //     var elem = document.getElementById("bar")
+        //     var width = 1;
+        //     var id = setInterval(frame, 10)
+        //     function frame() {
+        //         if (width >= 100) {
+        //             clearInterval(id)
+        //             entropy = 0
+        //         } else {
+        //             width++
+        //             elem.style.width = width + "%"
+        //         }
+        //     }
+        // }
 
-    if (input.length >= 5) {
-        document.getElementById("check0").style.color = "green";
-    }
-    else {
-        document.getElementById("check0").style.color = "red";
+
+        if (entropy >= 1 && entropy < 30) {
+            var elem = document.getElementById("bar")
+            var width = 1;
+            var id = setInterval(frame, 10)
+            function frame() {
+                if (width <= 15) {
+                    width++
+                    elem.style.width = width + "%"
+                } 
+            } 
+        } else if (entropy >= 30 && entropy < 50) {
+            var elem = document.getElementById("bar")
+            var width = 1;
+            var id = setInterval(frame, 10)
+            function frame() {
+                if (width <= 45) {
+                    width++
+                    elem.style.width = width + "%"
+                } 
+            } 
+        } else if (entropy >= 50 && entropy < 70) {
+            var elem = document.getElementById("bar")
+            var width = 1;
+            var id = setInterval(frame, 10)
+            function frame() {
+                if (width <= 75) {
+                    width++
+                    elem.style.width = width + "%"
+                } 
+            } 
+        } else if (entropy >= 70 && entropy < 120) {
+            var elem = document.getElementById("bar")
+            var width = 1;
+            var id = setInterval(frame, 10)
+            function frame() {
+                if (width <= 90) {
+                    width++
+                    elem.style.width = width + "%"
+                } 
+            } 
+        } else if (entropy >= 120) {
+            var elem = document.getElementById("bar")
+            var width = 1;
+            var id = setInterval(frame, 10)
+            function frame() {
+                if (width <= 100) {
+                    width++
+                    elem.style.width = width + "%"
+                } 
+            } 
+        }
+
+
     }
 
-    if (input.length <= 15) {
-        document.getElementById("check1").style.color = "green";
-    }
-    else {
-        document.getElementById("check1").style.color = "red";
-    }
 
-    if (input.match(/[0-9]/i)) {
-        document.getElementById("check2").style.color = "green";
-    }
-    else {
-        document.getElementById("check2").style.color = "red";
-    }
+    move()
 
-    if (input.match(/[^A-Za-z0-9-' ']/i)) {
-        document.getElementById("check3").style.color = "green";
-    }
-    else {
-        document.getElementById("check3").style.color = "red";
-    }
+    // function move() {
+    //     if (entropy >= 1 && entropy <= 30) {
+    //         var elem = document.getElementById("bar")
+    //         var width = 1;
+    //         var id = setInterval(frame, 10)
+    //         function frame() {
+    //             if (width >= 100) {
+    //                 clearInterval(id)
+    //                 entropy = 0
+    //             } else {
+    //                 width++
+    //                 elem.style.width = width + "%"
+    //             }
+    //         }
+    //     }
+    // }
 
-    if (input.match(' ')) {
-        document.getElementById("check4").style.color = "red";
-    }
-    else {
-        document.getElementById("check4").style.color = "green";
-    }
+
+
+
+    // if (input.length >= 5) {
+    //     document.getElementById("check0").style.color = "green"
+    // }
+    // else {
+    //     document.getElementById("check0").style.color = "red"
+    // }
+
+    // if (input.length <= 15) {
+    //     document.getElementById("check1").style.color = "green"
+    // }
+    // else {
+    //     document.getElementById("check1").style.color = "red"
+    // }
+
+    // if (input.match(/[0-9]/i)) {
+    //     document.getElementById("check2").style.color = "green"
+    // }
+    // else {
+    //     document.getElementById("check2").style.color = "red"
+    // }
+
+    // if (input.match(/[^A-Za-z0-9-' ']/i)) {
+    //     document.getElementById("check3").style.color = "green"
+    // }
+    // else {
+    //     document.getElementById("check3").style.color = "red"
+    // }
+
+    // if (input.match(' ')) {
+    //     document.getElementById("check4").style.color = "red"
+    // }
+    // else {
+    //     document.getElementById("check4").style.color = "green"
+    // }
 
 }
