@@ -1,6 +1,10 @@
 let lang = {
     "pl": {
         "slogan": "Korzystanie z Internetu ma swoje nieocenione zalety, ale pamiętaj,</br> że nie jest wolne od zagrożeń.",
+        "card0": "Korzystaj z weryfikacji dwoetapowej",
+        "card1": "Wylogowuj się ze swoich kont, jeśli korzystałeś z nich na obcym komputerze",
+        "card2": "Korzystaj tylko z sieci WiFi posiadające hasło",
+        "card3": "Odwiedzaj wyłącznie bezpieczne strony, czyli takie, które posiadają certyfikat bezpieczeństwa (świadczy o nim zamknięta kłódka, którą znajdziesz na lewo od adresu strony www)",
         // "textTest": "Sprawdź o ile bezpieczne hasło",
         "textTest": "Sprawdź czy spełnia hasło minimalne warunki",
         "inputPassword": "Wprowadź tutaj",
@@ -21,6 +25,10 @@ let lang = {
     },
     "ua": {
         "slogan": "Користування Інтернетом має безцінні переваги, але пам’ятайте,</br> що воно не позбавлене ризиків.",
+        "card0": "Використовуйте 2-етапну перевірку",
+        "card1": "Вийдіть зі своїх облікових записів, якщо ви їх використовували на чужому комп’ютері",
+        "card2": "Використовуйте лише мережі WiFi, які мають пароль",
+        "card3": "Відвідуйте лише безпечні веб-сайти, тобто ті, які мають сертифікат безпеки (про це свідчить закритий замок, який ви знайдете зліва від адреси веб-сайту)",
         "textTest": "Перевір чи відповідає пароль мінімальним вимогам",
         "inputPassword": "Введення паролю",
         "check0": "Більше ніж 5",
@@ -50,7 +58,7 @@ function render() {
         <div id="header">
             <div class="gradient"></div>
             <div class="project-name">
-                <span>Safe Internet </span>
+                <span>Safe Internet</span>
             </div>
             <div class="language-wrapper">
                 <div class="ua language-text language" data-lang="ua">ukr</div>
@@ -70,25 +78,25 @@ function render() {
                         <div class="image">
                             <img class="card-image" src="images/3.png" alt="two-step-auth">
                         </div>
-                        <div class="text-card">Korzystaj z weryfikacji dwoetapowej</div>
+                        <div class="text-card">${lang[currentLang].card0}</div>
                     </div>
                     <div class="swiper-slide card">
                         <div class="image">
                             <img class="card-image" src="images/4.png" alt="foreign-pc">
                         </div>
-                        <div class="text-card">Wylogowuj się ze swoich kont, jeśli korzystałeś z nich na obcym komputerze</div>
+                        <div class="text-card">${lang[currentLang].card1}</div>
                     </div>
                     <div class="swiper-slide card">
                         <div class="image">
                             <img class="card-image" src="images/2.png" alt="two-step-auth">
                         </div>
-                        <div class="text-card">Korzystaj tylko z sieci WiFi posiadające hasło</div>
+                        <div class="text-card">${lang[currentLang].card2}</div>
                     </div>
                     <div class="swiper-slide card">
                         <div class="image">
                             <img class="card-image" src="images/5.png" alt="safe-wifi">
                         </div>
-                        <div class="text-card">Odwiedzaj wyłącznie bezpieczne strony, czyli takie, które posiadają certyfikat bezpieczeństwa (świadczy o nim zamknięta kłódka, którą znajdziesz na lewo od adresu strony www)</div>
+                        <div class="text-card">${lang[currentLang].card3}</div>
                     </div>
                 </div>
                 
