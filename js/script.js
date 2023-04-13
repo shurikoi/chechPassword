@@ -5,7 +5,7 @@ let lang = {
         "card1": "Wylogowuj się ze swoich kont, jeśli korzystałeś z nich na obcym komputerze",
         "card2": "Korzystaj tylko z sieci WiFi posiadające hasło",
         "card3": "Odwiedzaj wyłącznie bezpieczne strony, czyli takie, które posiadają certyfikat bezpieczeństwa (świadczy o nim zamknięta kłódka, którą znajdziesz na lewo od adresu strony www)",
-        // "textTest": "Sprawdź o ile bezpieczne hasło",
+        // "textTest": "Sprawdź jak bezpieczne jest twoje hasło",
         "textTest": "Sprawdź czy spełnia hasło minimalne warunki",
         "inputPassword": "Wprowadź tutaj",
         "check0": "Więcej niż 5",
@@ -15,9 +15,9 @@ let lang = {
         "check4": "Nie zawiera spacji",
         "textSecure": "Bezpieczeństwo haseł zaczyna się od ich siły.",
         "levelSecure": "Silne hasło",
-        "advice0": "Jest to co najmniej 12 znaków, ale lepsze jest co najmniej 14 znaków.",
+        "advice0": "Ma co najmniej 12 znaków, ale lepiej jest co najmniej 14 znaków.",
         "advice1": "Kombinacja wielkich liter, małych liter, cyfr i symboli.",
-        "advice2": "To nie wyraz, który można znaleźć w słowniku, ani nazwa osoby, znaku, produktu lub organizacji.",
+        "advice2": "To nie wyraz, który można znaleźć w słowniku, ani nazwa osoby, znaku, produktu, organizacji, sportu lub hobby.",
         "advice3": "Znacznie inne niż poprzednie hasła.",
         "advice4": "Łatwy do zapamiętania, ale trudny do odgadnięcia przez innych. </br></br>Rozważ użycie zapadających w pamięć fraz, takich jak \"6MonkeysRLooking^\".",
         "text500": "Pobierz dodatkowe materiały",
@@ -61,9 +61,9 @@ function render() {
                 <span>Safe Internet</span>
             </div>
             <div class="language-wrapper">
-                <div class="ua language-text language" data-lang="ua">ukr</div>
-                <div class="line language-text"> | </div>
-                <div class="pl language-text language" data-lang="pl">pl</div>
+            <div class="pl language-text language" data-lang="pl">pl</div>
+            <div class="line language-text"> | </div>
+            <div class="ua language-text language" data-lang="ua">ukr</div>
             </div>
         </div>
 
@@ -217,11 +217,22 @@ function render() {
 
 
 
+// check()
+    
 function check() {
     var input = document.getElementById("password").value;
 
     input = input.trim();
+    // const Entropizer = require("../entropizer")
+    // const Entropizer = require('entropizer')
+    
+
     document.getElementById("password").value = input;
+    var entropizer = new Entropizer()
+    var entropy = entropizer.evaluate(input)
+    console.log(entropy)
+
+
     if (input.length >= 5) {
         document.getElementById("check0").style.color = "green";
     }
