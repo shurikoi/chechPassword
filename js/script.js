@@ -5,16 +5,21 @@ let lang = {
         "card1": "Wylogowuj się ze swoich kont, jeśli korzystałeś z nich na obcym komputerze",
         "card2": "Korzystaj tylko z sieci WiFi posiadające hasło",
         "card3": "Odwiedzaj wyłącznie bezpieczne strony, czyli takie, które posiadają certyfikat bezpieczeństwa (świadczy o nim zamknięta kłódka, którą znajdziesz na lewo od adresu strony www)",
-        // "textTest": "Sprawdź jak bezpieczne jest twoje hasło",
         "textTest": "Sprawdź jak silne jest twoje hasło",
         "inputPassword": "Wprowadź tutaj",
+        "entopy0": "Bardzo słabe hasło! Ma jedynie",
+        "entopy1": "Twoje hasło jest wciąż słabe, można je łatwo złamać i zapewnia",
+        "entopy2": "Twoje hasło wydaje się całkiem dobre i ma",
+        "entopy3": "Masz silne hasło, które zapewnia około",
+        "entopy4": "Twoje hasło jest bardzo silne i ma",
+        "bitOfEnt": "bit entropii",
         "check0": "Więcej niż 5",
         "check1": "Nie więcej niż 15",
         "check2": "Zawiera cyfry",
         "check3": "Zawiera znaki specjalne",
         "check4": "Nie zawiera spacji",
-        // "textSecure": "Bezpieczeństwo haseł zaczyna się od ich siły.",
         "textSecure": "Co to jest silne hasło?",
+        "textEnt": "Sprawdzanie hasła za pomocą entropii to metoda oceny siły hasła poprzez pomiar losowości.</br></br> Entropia odzwierciedla ilość informacji zawartych w haśle oraz stopień przypadkowości lub niepewności w nim zawartej. Im wyższa entropia, tym hasło jest bardziej odporne, ponieważ zawiera więcej informacji i jest trudniejsze do wybrania metodą wyszukiwania lub ataku słownikowego.",
         "SuggestionsSecure": "Sugestie dotyczące ulepszeń hasła",
         "advice0": "Ma co najmniej 12 znaków, ale lepiej jest co najmniej 14 znaków.",
         "advice1": "Kombinacja wielkich liter, małych liter, cyfr i symboli.",
@@ -32,14 +37,20 @@ let lang = {
         "card3": "Відвідуйте лише безпечні веб-сайти, тобто ті, які мають сертифікат безпеки (про це свідчить закритий замок, який ви знайдете зліва від адреси веб-сайту)",
         "textTest": "Перевір наскільки сильний твій пароль",
         "inputPassword": "Введення паролю",
+        "entopy0": "Дуже слабкий пароль! Має лише",
+        "entopy1": "Твій пароль все ще слабкий, його можна легко зламати і він має",
+        "entopy2": "Твій пароль виглядає досить непогано і має",
+        "entopy3": "У тебе сильний пароль, який забезпечує приблизно",
+        "entopy4": "Твій пароль дуже сильний і має",
+        "bitOfEnt": "біт ентропії",
         "check0": "Більше ніж 5",
         "check1": "Не більше ніж 15",
         "check2": "Включає цифри",
         "check3": "Включає спеціяльні знаки",
         "check4": "Не має пробілів",
-        // "textSecure": "Безпека паролів залежить від їх захисту та сили",
         "textSecure": "Що таке сильний пароль?",
-        "SuggestionsSecure": "Сильний пароль",
+        "textEnt": "Перевірка пароля за допомогою ентропії - це метод оцінки сили пароля шляхом вимірювання випадковості.</br></br> Ентропія відображає кількість інформації, що міститься в паролі, а також ступінь випадковості або невизначеності, що міститься в ньому. Чим вища ентропія, тим пароль більш стійкий, оскільки містить більше інформації і є важчим для відбору методом пошуку або словникової атаки.",
+        "SuggestionsSecure": "Пропозиції щодо покращення паролю",
         "advice0": "Має принаймні 12 символів, але краще коли не менше 14.",
         "advice1": "Комбінація великих літер та малих, цифр і символів.",
         "advice2": "Це не вираз, який можна знайти в словнику, не назва особа, продукту чи організації.",
@@ -128,7 +139,7 @@ function render() {
             
             <div class="aboutEntropy">
                 <img id="imgEnt" src="images/entropy.png">
-                <div class="textEnt">Sprawdzanie hasła za pomocą entropii to metoda oceny siły hasła poprzez pomiar losowości.</br></br> Entropia odzwierciedla ilość informacji zawartych w haśle oraz stopień przypadkowości lub niepewności w nim zawartej. Im wyższa entropia, tym hasło jest bardziej odporne, ponieważ zawiera więcej informacji i jest trudniejsze do wybrania metodą wyszukiwania lub ataku słownikowego.</div>
+                <div class="textEnt">${lang[currentLang].textEnt}</div>
             </div>
 
             <div class="suggestions">
@@ -222,8 +233,10 @@ eyeElement.addEventListener("click", function () {
 function check() {
     let input = document.getElementById("password").value
 
+    // метод trip запрещает писать пробел в input
     input = input.trim()
 
+    //для статус-бара
     document.getElementById("password").value = input
     let entropizer = new Entropizer()
     let entropy = entropizer.evaluate(input)
@@ -231,8 +244,10 @@ function check() {
     let width = 0;
     console.log(entropy)
 
+    // для вывода значения ентропии под инпутом
     let outputEnt = document.getElementById("entropySum")
-    entropySum.innerHTML = "Entropia hasła: " + Math.round(entropy) + " bit"
+    let level = ""
+
 
     function move() {
 
@@ -240,21 +255,28 @@ function check() {
         if (entropy >= 1 && entropy < 30) {
             elem.style.width = "15%"
             elem.style.background = "linear-gradient(149deg, #ffd684, #fff200)"
+            level = lang[currentLang].entopy0
         } else if (entropy >= 30 && entropy < 50) {
             elem.style.width = "45%"
             elem.style.background = "linear-gradient(149deg, #ffd684, #ffb300)"
+            level = lang[currentLang].entopy1
         } else if (entropy >= 50 && entropy < 70) {
             elem.style.width = "70%"
             elem.style.background = "linear-gradient(149deg, #ffd684, #ff6a00)"
+            level = lang[currentLang].entopy2
         } else if (entropy >= 70 && entropy < 120) {
             elem.style.width = "85%"
             elem.style.background = "linear-gradient(149deg, #ffd684, #ff3700)"
+            level = lang[currentLang].entopy3
         } else if (entropy >= 120) {
             elem.style.width = "100%"
             elem.style.background = "linear-gradient(149deg, #ffd684, #ff0000)"
+            level = lang[currentLang].entopy4
         } else {
             elem.style.width = 0 + "%"
         }
+
+        entropySum.innerHTML = level + " " + Math.round(entropy) + " " + lang[currentLang].bitOfEnt
 
 
     }
