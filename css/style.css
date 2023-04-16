@@ -3,6 +3,7 @@
 
 body {
     background-color: #F0F0F0;
+    align-items: center;
 }
 
 * {
@@ -13,7 +14,7 @@ body {
 #header {
     background-color: black;
     z-index: 1000;
-    height: 90px;
+    height: 80px;
     width: 100%;
     background: linear-gradient(149deg, #DA22FF, #56B4D3, #9733EE);
     animation: gradient 8s infinite linear;
@@ -83,8 +84,9 @@ body {
     margin-left: auto;
     margin-right: auto;
     /* width: 50%; */
-    /* padding-top: 50px; */
-    padding: 160px 200px;
+    padding-top: 150px;
+    padding-bottom: 100px;
+    width: 80%;
 }
 
 #slogan {
@@ -152,6 +154,7 @@ body {
     height: auto;
 } */
 
+
 .swiper-section {
     position: relative;
     padding: 0px 50px;
@@ -159,6 +162,10 @@ body {
 
 .container-test {
     margin-top: 100px;
+    display: flex;
+    gap: 34px;
+    flex-direction: column;
+    align-items: center;
 }
 
 .text-test {
@@ -170,19 +177,23 @@ body {
 }
 
 .pass {
+    position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 50px;
 }
 
 #password {
-    margin-top: 25px;
     border: none;
     height: 60px;
-    width: 70%;
+    width: 100%;
     font-family: 'Roboto', sans-serif;
     font-size: large;
-    padding-right: 20px;
-    padding-left: 20px;
+    padding: 0px 20px;
+    box-sizing: border-box;
     border-radius: 50px;
     box-shadow: 0px 0px 20px rgb(255, 250, 223);
 }
@@ -198,25 +209,49 @@ input:focus {
 }
 
 #progress {
+    border: 1px solid black;
     width: 40%;
-    background-color: rgb(209, 209, 209);
+    background-color: rgb(236, 236, 236);
 }
+
+.glowing {
+    width: 60%;
+    border-radius: 50px;
+    box-shadow: 0px 0px 20px rgb(230, 199, 255);
+}
+
+#eye {
+    position: absolute;
+    right: 30px;
+    top: 18px;
+    background-color: white;
+}
+
 
 #bar {
     width: 0%;
-    height: 15px;
-    background: linear-gradient(149deg, #ffd684, #6800fa);
-    /* background-color: rgb(99, 255, 99); */
+    height: 2px;
+    position: absolute;
+    left: 0px;
+    bottom: 0;
+    background: linear-gradient(149deg, #ffd684, #fff200);
+    transition: 0.3s;
 }
 
-.indicators {
+#entropySum {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+}
+
+/* .indicators {
     font-family: 'Roboto', sans-serif;
     font-size: medium;
     margin-top: 15px;
     margin: 10px;
     display: flex;
     justify-content: center;
-}
+} */
 
 #check0,
 #check1,
@@ -229,8 +264,41 @@ input:focus {
 }
 
 .secure {
-    margin-top: 100px;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* text-align: center; */
+    gap: 70px;
 }
+
+.aboutEntropy {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 70px;
+}
+
+#imgEnt {
+    width: 25%;
+}
+
+.textEnt {
+    width: 50%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+}
+/* 
+.checkEntropy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+} */
+
 
 .text-secure {
     font-family: 'Roboto', sans-serif;
@@ -272,7 +340,8 @@ input:focus {
 }
 
 .block:hover {
-    box-shadow: 0px 0px 20px rgb(255, 250, 223);
+    /* box-shadow: 0px 0px 20px rgb(255, 250, 223); */
+    box-shadow: 0px 0px 20px rgb(230, 199, 255);
 }
 
 .additional {

@@ -6,7 +6,7 @@ let lang = {
         "card2": "Korzystaj tylko z sieci WiFi posiadające hasło",
         "card3": "Odwiedzaj wyłącznie bezpieczne strony, czyli takie, które posiadają certyfikat bezpieczeństwa (świadczy o nim zamknięta kłódka, którą znajdziesz na lewo od adresu strony www)",
         // "textTest": "Sprawdź jak bezpieczne jest twoje hasło",
-        "textTest": "Sprawdź jak bezpieczne jest twoje hasło",
+        "textTest": "Sprawdź jak silne jest twoje hasło",
         "inputPassword": "Wprowadź tutaj",
         "check0": "Więcej niż 5",
         "check1": "Nie więcej niż 15",
@@ -14,8 +14,8 @@ let lang = {
         "check3": "Zawiera znaki specjalne",
         "check4": "Nie zawiera spacji",
         // "textSecure": "Bezpieczeństwo haseł zaczyna się od ich siły.",
-        "textSecure": "Co to jest bezpieczne hasło?",
-        // "levelSecure": "Silne hasło",
+        "textSecure": "Co to jest silne hasło?",
+        "SuggestionsSecure": "Sugestie dotyczące ulepszeń hasła",
         "advice0": "Ma co najmniej 12 znaków, ale lepiej jest co najmniej 14 znaków.",
         "advice1": "Kombinacja wielkich liter, małych liter, cyfr i symboli.",
         "advice2": "To nie wyraz, który można znaleźć w słowniku, ani nazwa osoby, znaku, produktu, organizacji, sportu lub hobby.",
@@ -30,7 +30,7 @@ let lang = {
         "card1": "Вийдіть зі своїх облікових записів, якщо ви їх використовували на чужому комп’ютері",
         "card2": "Використовуйте лише мережі WiFi, які мають пароль",
         "card3": "Відвідуйте лише безпечні веб-сайти, тобто ті, які мають сертифікат безпеки (про це свідчить закритий замок, який ви знайдете зліва від адреси веб-сайту)",
-        "textTest": "Перевір наскільки безпечний твій пароль",
+        "textTest": "Перевір наскільки сильний твій пароль",
         "inputPassword": "Введення паролю",
         "check0": "Більше ніж 5",
         "check1": "Не більше ніж 15",
@@ -38,8 +38,8 @@ let lang = {
         "check3": "Включає спеціяльні знаки",
         "check4": "Не має пробілів",
         // "textSecure": "Безпека паролів залежить від їх захисту та сили",
-        "textSecure": "Що таке безпечний пароль?",
-        // "levelSecure": "Сильний пароль",
+        "textSecure": "Що таке сильний пароль?",
+        "SuggestionsSecure": "Сильний пароль",
         "advice0": "Має принаймні 12 символів, але краще коли не менше 14.",
         "advice1": "Комбінація великих літер та малих, цифр і символів.",
         "advice2": "Це не вираз, який можна знайти в словнику, не назва особа, продукту чи організації.",
@@ -65,7 +65,7 @@ function render() {
             <div class="language-wrapper">
             <div class="pl language-text language" data-lang="pl">pl</div>
             <div class="line language-text"> | </div>
-            <div class="ua language-text language" data-lang="ua">ukr</div>
+            <div class="ua language-text language" data-lang="ua">ua</div>
             </div>
         </div>
 
@@ -112,18 +112,27 @@ function render() {
             <div class="text-test">
             ${lang[currentLang].textTest}
             </div>
-            <div class="pass"><input type="password" id="password" placeholder="${lang[currentLang].inputPassword}" onInput="check()" /></div>
-            <div class="check-password"> <div id="progress"> 
-                <div id="bar"></div> 
+            
+            <div class="glowing">
+                <div class="pass">
+                    <input type="password" id="password" placeholder="${lang[currentLang].inputPassword}" onInput="check()" />
+                    <div id="eye"><img id="scrToEye" src="css/eye/closed.svg" /></div>
+                    <div id="bar"></div> 
+                </div>
             </div>
-        </div></div>
+            <div id="entropySum"></div>
+        </div>
 
         <div class="secure">
             <div class="text-secure">${lang[currentLang].textSecure}</div>
-            <!-- <div class="level-secure">${lang[currentLang].levelSecure}</div> -->
+            
+            <div class="aboutEntropy">
+                <img id="imgEnt" src="images/entropy.png">
+                <div class="textEnt">Sprawdzanie hasła za pomocą entropii to metoda oceny siły hasła poprzez pomiar losowości.</br></br> Entropia odzwierciedla ilość informacji zawartych w haśle oraz stopień przypadkowości lub niepewności w nim zawartej. Im wyższa entropia, tym hasło jest bardziej odporne, ponieważ zawiera więcej informacji i jest trudniejsze do wybrania metodą wyszukiwania lub ataku słownikowego.</div>
+            </div>
 
-
-
+            <div class="suggestions">
+            <div class="level-secure">${lang[currentLang].SuggestionsSecure}</div>
             <div class="container-cards">
                 <div class="block">
                 ${lang[currentLang].advice0}
@@ -140,6 +149,7 @@ function render() {
                 <div class="block">
                 ${lang[currentLang].advice4}
                 </div>
+            </div>
             </div>
         </div>
 
@@ -168,99 +178,81 @@ function render() {
 
 
     document.querySelectorAll(".language").forEach((langItem) => {
-        console.log(123, langItem)
+        // console.log(123, langItem)
         langItem.addEventListener("click", (event) => {
             currentLang = event.target.dataset.lang
-            console.log(currentLang)
+            // console.log(currentLang)
             render()
         })
     })
 
-    let swiper = new Swiper(".mySwiper", {
-        slidesPerView: 2,
-        spaceBetween: 30,
-        slidesPerGroup: 1,
-        // loop: true,
-        // loopFillGroupWithBlank: true,
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-    })
 
 }
 
+let swiper = new Swiper(".mySwiper", {
+    slidesPerView: 2,
+    spaceBetween: 30,
+    slidesPerGroup: 1,
+    // loop: true,
+    // loopFillGroupWithBlank: true,
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+})
 
+const eyeElement = document.getElementById("eye")
+const imgElement = document.getElementById("scrToEye")
+const password = document.getElementById("password")
+let isOpen = false
+let isVisible = false
 
-// check()
-    
+eyeElement.addEventListener("click", function () {
+
+    isOpen = !isOpen // инвертация 
+    isVisible = !isVisible
+    imgElement.src = isOpen ? "css/eye/open.svg" : "css/eye/closed.svg" // if (isOpen) {"css/eye/open.svg"} else {"css/eye/closed.svg"}
+    password.type = isVisible ? "text" : "password"
+});
+
 function check() {
     let input = document.getElementById("password").value
 
     input = input.trim()
-    // const Entropizer = require("../entropizer")
-    // const Entropizer = require('entropizer')
-    
 
     document.getElementById("password").value = input
-    var entropizer = new Entropizer()
-    var entropy = entropizer.evaluate(input)
+    let entropizer = new Entropizer()
+    let entropy = entropizer.evaluate(input)
     const elem = document.getElementById("bar")
     let width = 0;
     console.log(entropy)
+
+    let outputEnt = document.getElementById("entropySum")
+    entropySum.innerHTML = "Entropia hasła: " + Math.round(entropy) + " bit"
 
     function move() {
 
 
         if (entropy >= 1 && entropy < 30) {
-            let id = setInterval(frame, 10)
-            function frame() {
-                if (width <= 15) {
-                    width++
-                    elem.style.width = width + "%"
-                } 
-            } 
+            elem.style.width = "15%"
+            elem.style.background = "linear-gradient(149deg, #ffd684, #fff200)"
         } else if (entropy >= 30 && entropy < 50) {
-            let elem = document.getElementById("bar")
-            let id = setInterval(frame, 10)
-            function frame() {
-                if (width <= 45) {
-                    width++
-                    elem.style.width = width + "%"
-                } 
-            } 
+            elem.style.width = "45%"
+            elem.style.background = "linear-gradient(149deg, #ffd684, #ffb300)"
         } else if (entropy >= 50 && entropy < 70) {
-            let elem = document.getElementById("bar")
-            let id = setInterval(frame, 10)
-            function frame() {
-                if (width <= 75) {
-                    width++
-                    elem.style.width = width + "%"
-                } 
-            } 
+            elem.style.width = "70%"
+            elem.style.background = "linear-gradient(149deg, #ffd684, #ff6a00)"
         } else if (entropy >= 70 && entropy < 120) {
-            let elem = document.getElementById("bar")
-            let id = setInterval(frame, 10)
-            function frame() {
-                if (width <= 90) {
-                    width++
-                    elem.style.width = width + "%"
-                } 
-            } 
+            elem.style.width = "85%"
+            elem.style.background = "linear-gradient(149deg, #ffd684, #ff3700)"
         } else if (entropy >= 120) {
-            let elem = document.getElementById("bar")
-            let id = setInterval(frame, 10)
-            function frame() {
-                if (width <= 100) {
-                    width++
-                    elem.style.width = width + "%"
-                } 
-            } 
-        } else if (entropy == 0) {
+            elem.style.width = "100%"
+            elem.style.background = "linear-gradient(149deg, #ffd684, #ff0000)"
+        } else {
             elem.style.width = 0 + "%"
         }
 
